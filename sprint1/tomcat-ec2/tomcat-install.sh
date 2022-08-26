@@ -6,5 +6,6 @@ wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.49/bin/apache-tomcat-8
 
 tar -xvzf apache-tomcat-8.5.49.tar.gz
 mv apache-tomcat-8.5.49 tomcat
+sudo su --
 cd /opt/tomcat/bin/
 ./startup.sh
