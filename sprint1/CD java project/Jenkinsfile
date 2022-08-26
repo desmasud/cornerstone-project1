@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    tools {
+  maven 'Maven'
+}
+stages {
+  stage('git checkout') {
+    steps {
+      git branch: 'main', url: 'https://github.com/desmasud/java-sampleproject.git'
+    }
+  }
+stage ('Build') {
+    steps  {
+        sh 'mvn clean install'
+    }
+}
+stage ('Deploy to Tomcat server') {
+      steps {
+        script {
+          deploy adapters: [tomcat8(credentialsId: 'dev', path: '', url: 'http://54.82.139.217:8080/')], contextPath: '', onFailure: false, war: '**/*.war' 
+        }
+      }
+    }
+}
+
+}
