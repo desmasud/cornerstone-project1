@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    tools {
+  maven 'Maven'
+}
+stages {
+  stage('git checkout') {
+    steps {
+      git branch: 'main', url: 'https://github.com/desmasud/java-sampleproject.git'
+    }
+  }
+stage ('Build') {
+    steps  {
+        sh 'mvn clean install'
+    }
+}
+}
+
+}
