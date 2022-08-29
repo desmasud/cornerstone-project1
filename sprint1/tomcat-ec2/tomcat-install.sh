@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 sudo yum update -y
 amazon-linux-extras install -y java-openjdk11
 cd /opt
