@@ -1,8 +1,6 @@
 provider "aws" {
   region = "us-east-1"
-  #access_key = "AKIA2SF3REMPBBIUZA6N"
-  #secret_key = "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"
-}
+  
 
 # Creat vpc and security group for our instance
 resource "aws_vpc" "docker-vpc" {
