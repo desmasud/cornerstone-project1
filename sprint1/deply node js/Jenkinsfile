@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+environment {
+  AWS_ACCESS_KEY_ID = credentials('AWS_credential')
+  DOCKERHUB_CREDENTIALS = credentials('dockerhub_id')
+}
+    stages {
+  stage('git checkout') {
+    steps {
+     git branch: 'main', url: 'https://github.com/desmasud/docker-server.git'
+    }
+  }
+  stage("terraform init") {
+    steps {
+        sh 'terraform init'
+    }
+  }
+stage("terraform plan") {
+    steps {
+        sh 'terraform plan'
+    }
+  }
+  stage("terraform apply") {
+    steps {
+        sh 'terraform apply -auto-approve'
+    }
+  }
+// creatte automation for dockerfile
+ stage("git chechout") {
+    steps {
+        git branch: 'main', url: 'https://github.com/desmasud/docker-hb.git'
+    }
+    
+}
+stage ("docker build") {
+    steps {
+        sh 'docker build -t masud-node .'
+    }
+}
+
+stage ("docker publish"){
+    steps {
+          withDockerRegistry([credentialsId: "dockerhub_id", url: ""]) {
+                sh 'docker push masud-node'
+}
+
+}
+    
+}
+    }
+}
