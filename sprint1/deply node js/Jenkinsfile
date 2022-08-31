@@ -34,14 +34,14 @@ stage("terraform plan") {
 }
 stage ("docker build") {
     steps {
-        sh 'docker build -t masud-node .'
+        sh 'docker build -t desmasud/masud-node .'
     }
 }
 
 stage ("docker publish"){
     steps {
           withDockerRegistry([credentialsId: "dockerhub_id", url: ""]) {
-                sh 'docker push masud-node'
+                sh 'docker push desmasud/masud-node'
 }
 
 }

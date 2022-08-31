@@ -1,6 +1,6 @@
 provider "aws" {
   region = "us-east-1"
-  
+}
 
 # Creat vpc and security group for our instance
 resource "aws_vpc" "docker-vpc" {
