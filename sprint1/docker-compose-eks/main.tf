@@ -82,7 +82,7 @@ resource "aws_volume_attachment" "persistent" {
     instance_id = aws_instance.this.id
 }
 
-resource "aws_instance" "this" {
+resource "aws_instance" "docker-compose" {
     ami = data.aws_ami.latest_amazon_linux.id
     availability_zone = var.availability_zone
     instance_type = var.instance_type
